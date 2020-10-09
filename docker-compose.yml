@@ -1,0 +1,150 @@
+version: "3.6"
+
+services:
+    redis5_node1:
+        image: redis5 
+        build: ./redis5_node1
+        container_name: redis5_node1
+        ports:
+            - "6379:6379"
+        networks:
+            rpn:
+                ipv4_address: 172.22.22.100
+        volumes: 
+            - "$HOME/docker/redis5_node1/etc/redis.conf:/etc/redis.conf"
+            - "$HOME/docker/redis5_node1/data:/data"        
+        restart: always 
+    redis5_node2:
+        image: redis5 
+        build: ./redis5_node2
+        container_name: redis5_node2
+        ports:
+            - "6380:6379"
+        networks:
+            rpn:
+                ipv4_address: 172.22.22.101
+        volumes: 
+            - "$HOME/docker/redis5_node2/etc/redis.conf:/etc/redis.conf"
+            - "$HOME/docker/redis5_node2/data:/data"        
+        restart: always           
+    redis5_node3:
+        image: redis5 
+        build: ./redis5_node3
+        container_name: redis5_node3
+        ports:
+            - "6381:6379"
+        networks:
+            rpn:
+                ipv4_address: 172.22.22.102
+        volumes: 
+            - "$HOME/docker/redis5_node3/etc/redis.conf:/etc/redis.conf"
+            - "$HOME/docker/redis5_node3/data:/data"        
+        restart: always           
+    redis5_node4:
+        image: redis5 
+        build: ./redis5_node4
+        container_name: redis5_node4
+        ports:
+            - "6382:6379"
+        networks:
+            rpn:
+                ipv4_address: 172.22.22.103
+        volumes: 
+            - "$HOME/docker/redis5_node4/etc/redis.conf:/etc/redis.conf"
+            - "$HOME/docker/redis5_node4/data:/data"        
+        restart: always           
+    redis5_node5:
+        image: redis5 
+        build: ./redis5_node5
+        container_name: redis5_node5
+        ports:
+            - "6383:6379"
+        networks:
+            rpn:
+                ipv4_address: 172.22.22.104
+        volumes: 
+            - "$HOME/docker/redis5_node5/etc/redis.conf:/etc/redis.conf"
+            - "$HOME/docker/redis5_node5/data:/data"        
+        restart: always           
+    redis5_node6:
+        image: redis5 
+        build: ./redis5_node6
+        container_name: redis5_node6
+        ports:
+            - "6384:6379"
+        networks:
+            rpn:
+                ipv4_address: 172.22.22.105
+        volumes: 
+            - "$HOME/docker/redis5_node6/etc/redis.conf:/etc/redis.conf"
+            - "$HOME/docker/redis5_node6/data:/data"        
+        restart: always           
+    php74_1:
+        image: php74
+        build: ./php74_1
+        container_name: php74_1
+        ports:
+            - "9000:9000"
+        networks:
+            rpn:
+                ipv4_address: 172.22.22.120
+        volumes: 
+            - "$HOME/docker/php74_1/etc/php.ini:/usr/local/etc/php/php.ini"
+            - "$HOME/docker/php74_1/vhost:/etc/nginx/conf.d"   
+            - "$HOME/docker/www:/var/www/html"   
+        privileged: true      
+        restart: always  
+    php74_2:
+        image: php74
+        build: ./php74_2
+        container_name: php74_2
+        ports:
+            - "9001:9000"
+        networks:
+            rpn:
+                ipv4_address: 172.22.22.121
+        volumes: 
+            - "$HOME/docker/php74_2/etc/php.ini:/usr/local/etc/php/php.ini"
+            - "$HOME/docker/php74_2/vhost:/etc/nginx/conf.d"   
+            - "$HOME/docker/www:/var/www/html"   
+        privileged: true      
+        restart: always  
+    php74_3:
+        image: php74
+        build: ./php74_3
+        container_name: php74_3
+        ports:
+            - "9002:9000"
+        networks:
+            rpn:
+                ipv4_address: 172.22.22.122
+        volumes: 
+            - "$HOME/docker/php74_3/etc/php.ini:/usr/local/etc/php/php.ini"
+            - "$HOME/docker/php74_3/vhost:/etc/nginx/conf.d"   
+            - "$HOME/docker/www:/var/www/html"   
+        privileged: true      
+        restart: always  
+    nginx1.15:
+        image: nginx1.15
+        build: ./nginx1.15
+        container_name: nginx1.15
+        ports:
+            - "80:80"
+            - "81:81"
+            - "82:82"
+            - "83:83"
+        networks:
+            rpn:
+                ipv4_address: 172.22.22.110
+        volumes: 
+            - "$HOME/docker/nginx1.15/etc/nginx.conf:/etc/nginx/nginx.conf"
+            - "$HOME/docker/nginx1.15/vhost:/etc/nginx/conf.d"   
+            - "$HOME/docker/www:/usr/share/nginx/html"     
+        restart: always     
+        
+networks:
+    rpn:
+        driver: bridge
+        ipam:
+            config:
+                - subnet: 172.22.22.0/24        

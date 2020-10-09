@@ -1,0 +1,15 @@
+FROM php:7.4.11-fpm-alpine
+
+COPY ./lib/redis-5.2.0.tgz /root/redis-5.2.0.tgz
+
+RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories \ 
+    && mv /usr/local/etc/php/php.ini-production php.ini \ 
+    && cd /root \
+    && tar -zxvf redis-5.2.0.tgz \ 
+    && docker-php-source extract \
+    && mv redis-5.2.0 /usr/src/php/ext/redis-5.2.0 \
+    && docker-php-ext-install pdo_mysql redis-5.2.0 \ 
+    && rm -rf /root/redis-5.2.0.tgz \
+    && docker-php-source delete
+
+EXPOSE 9000
