@@ -1,4 +1,4 @@
-version: "3.6"
+version: "3.3"
 
 services:
     redis5_node1:
@@ -16,7 +16,7 @@ services:
         restart: always 
     redis5_node2:
         image: redis5 
-        build: ./redis5_node2
+        build: ./redis5_node1
         container_name: redis5_node2
         ports:
             - "6380:6379"
@@ -29,7 +29,7 @@ services:
         restart: always           
     redis5_node3:
         image: redis5 
-        build: ./redis5_node3
+        build: ./redis5_node1
         container_name: redis5_node3
         ports:
             - "6381:6379"
@@ -42,7 +42,7 @@ services:
         restart: always           
     redis5_node4:
         image: redis5 
-        build: ./redis5_node4
+        build: ./redis5_node1
         container_name: redis5_node4
         ports:
             - "6382:6379"
@@ -55,7 +55,7 @@ services:
         restart: always           
     redis5_node5:
         image: redis5 
-        build: ./redis5_node5
+        build: ./redis5_node1
         container_name: redis5_node5
         ports:
             - "6383:6379"
@@ -68,7 +68,7 @@ services:
         restart: always           
     redis5_node6:
         image: redis5 
-        build: ./redis5_node6
+        build: ./redis5_node1
         container_name: redis5_node6
         ports:
             - "6384:6379"
