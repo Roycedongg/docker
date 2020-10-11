@@ -96,7 +96,7 @@ services:
         restart: always  
     php74_2:
         image: php74
-        build: ./php74_2
+        build: ./php74_1
         container_name: php74_2
         ports:
             - "9001:9000"
@@ -111,7 +111,7 @@ services:
         restart: always  
     php74_3:
         image: php74
-        build: ./php74_3
+        build: ./php74_1
         container_name: php74_3
         ports:
             - "9002:9000"
@@ -140,7 +140,26 @@ services:
             - "$HOME/docker/nginx1.15/etc/nginx.conf:/etc/nginx/nginx.conf"
             - "$HOME/docker/nginx1.15/vhost:/etc/nginx/conf.d"   
             - "$HOME/docker/www:/usr/share/nginx/html"     
-        restart: always     
+        restart: always
+    mysql5.7:
+        image: mysql5.7
+        build: ./mysql5.7
+        container_name: mysql5.7
+        ports:
+            - "3306:3306"
+        networks:
+            rpn:
+                ipv4_address: 172.22.22.180
+        environment: 
+            MYSQL_ROOT_PASSWORD: "root" 
+            MYSQL_DATABASE: "testdb"
+            MYSQL_USER: "test"
+            MYSQL_PASSWORD: "test"
+        volumes: 
+            - "$HOME/docker/mysql5.7/conf.d:/etc/mysql/conf.d"
+            - "$HOME/docker/mysql5.7/data:/var/lib/mysql"
+        privileged: true       
+        restart: always         
         
 networks:
     rpn:

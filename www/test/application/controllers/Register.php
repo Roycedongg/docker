@@ -30,9 +30,9 @@ class Register extends CI_Controller {
         } else if ($this->user_model->valid($email)) {
             $code = uniqid();
             $this->user_model->create($email, $password, $firstname, $lastname, $code);
-            $this->email($email, $code);
-            $this->index();
-            // redirect(base_url() . "login/");
+            // $this->email($email, $code);
+            // $this->index();
+            redirect(base_url() . "login/");
         } else {
             $this->data['status'] = "This email has already sign up, please log in";
             $this->index();

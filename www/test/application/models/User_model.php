@@ -43,7 +43,8 @@ class User_model extends CI_Model {
 			'Password' => $password,
 			'Firstname' => $firstname,
 			'Lastname' => $lastname,
-			'code' => $code
+			'code' => $code,
+			'status' => 1 // 取消邮件验证， 直接修改状态为1
 		);
 		$this->db->insert(
 			'Users',
