@@ -8,7 +8,7 @@ class Profile extends CI_Controller {
         if (isset($_SESSION["email"])) {
             $this->data['email'] = $_SESSION["email"];
         $this->data['password'] = $this->user_model->get_info($this->data['email'])['Password'];
-        $this->data['firstname'] = $this->user_model->get_info($this->data['email'])['FirstName'];
+        $this->data['firstname'] = $this->user_model->get_info($this->data['email'])['Firstname'];
         } else {
             redirect('/login');
         }
